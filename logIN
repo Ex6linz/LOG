@@ -1,0 +1,27 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class logIN extends Interface implements ActionListener {
+     public static void main(String[]args) {
+      String name, pass;
+
+     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+         String name;
+         String pass;
+
+         try {
+             name = Interface.jTextField1.getSelectedText();
+             pass = Interface.jPasswordField1.getSelectedText();
+
+         } catch (Exception e1) {
+             JOptionPane.showMessageDialog(null,"Please give a password and username");
+         }
+
+
+    }
+}
