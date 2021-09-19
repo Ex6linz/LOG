@@ -1,4 +1,4 @@
- class RegisterForm {
+class RegisterForm {
     public void setVisible(boolean b) {
     }
     void setDefaultCloseOperation(int EXIT_ON_CLOSE) {

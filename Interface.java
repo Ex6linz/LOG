@@ -1,21 +1,32 @@
-import javax.management.relation.RelationServiceNotRegisteredException;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.*;
 
-public class Interface extends javax.swing.JFrame {
+public class Interface extends javax.swing.JFrame implements ActionListener {
 
-  public static JScrollPane jScrollPane1 = new JScrollPane();
-  public static JTextPane jTextPane1 = new JTextPane();
-  public static JLabel jLabel1 = new JLabel();
-  public static JLabel jLabel3,jLabel6,jLabel7,jLabel2,jLabel4,jLabel5 = new JLabel();
-  public static JPanel jPanel1,jPanel2,jPanel3,jPanel4 = new JPanel();
-  public static JButton jButton1,jButton2,jButton3 = new JButton();
-  public static JPasswordField jPasswordField1 = new JPasswordField();
-  public static JTextField jTextField1 = new JTextField();
+    public static JScrollPane jScrollPane1 = new JScrollPane();
+    public static JTextPane jTextPane1 = new JTextPane();
+    public static JLabel jLabel1 = new JLabel();
+    public static JLabel jLabel3,jLabel6,jLabel7,jLabel2,jLabel4,jLabel5 = new JLabel();
+    public static JPanel jPanel1,jPanel2,jPanel3,jPanel4 = new JPanel();
+    public static JButton jButton1,jButton2,jButton3 = new JButton();
+    public static JPasswordField jPasswordField1 = new JPasswordField();
+    public static JTextField jTextField1 = new JTextField();
     public static JFrame frame;
+   Connect DB_conn;
+   public void JdbcConnection() {
 
-    public Interface() {
+       DB_conn = new Connect();
+       if(DB_conn == null) {
+       JOptionPane.showMessageDialog(this,"Connection is not available ","Error",JOptionPane.ERROR_MESSAGE);
+       }else {
+
+   }
+}
+
+    public Interface()  {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
@@ -133,6 +144,21 @@ public class Interface extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+                boolean click;
+                if (click=true){
+                    try {
+                        Connection connect_db_2 = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "");
+                        Statement state_db_2 = connect_db_2.createStatement();
+                        ResultSet resultSet_db_2 = state_db_2.executeQuery("insert into " + jTextField1.getText());
+                        while (resultSet_db_2.next()) {
+                            System.out.println(resultSet_db_2.getString("username"));
+                        }catch (Exception exception){
+
+                        }
+                    }
+
+                }
+
             }
         });
 
@@ -243,5 +269,8 @@ public class Interface extends javax.swing.JFrame {
     }
 
 
-}
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+    }
+}
